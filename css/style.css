@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css?family=Gilda+Display|Playfair+Display|Roboto|Roboto:400i|Arvo:400,400i,700,700i');
+
+body{
+    margin: 0 auto;
+    font-family: "Roboto", Helvetica, Arial, sans-serif;
+}
+
+header {
+    /*border-top:2px solid black;*/
+    height: 83vh;
+    margin-top: 5px;
+    background-image:url("../Data/img/vfinx.png");
+    background-repeat: no-repeat;
+    background-size: 83%;
+    background-position: top;
+}
+
+.header-class {
+    margin: 9% 0 0 10%;
+    display: flex;
+    flex-direction: row ;
+    width: 83%;
+    opacity: 1;
+    z-index: 2;
+
+}
+.header-Big_title {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    margin-left: 0;
+    align-items: flex-end;
+    text-align: end;
+    justify-content: center;
+}
+
+header h1 {
+    font-family: 'Arvo', serif;
+    font-size: 66px;
+    width: 55%;
+    margin: 1px 0 0 0;
+
+}
+
+
+.intro-container {
+    margin: 0 0 0 5%;
+    display: flex;
+    flex-direction: column;
+    max-width: 39%;
+    text-align: justify;
+    line-height: 1.5em;
+    background-color: rgba(255, 255, 255, 0.46);
+    padding: 1px 8px;
+    justify-content: center;
+}
+
+h4 {
+    opacity: .6;
+}
+
+header h3 {
+    color: #ec7d26;
+    opacity: 1;
+    letter-spacing: 2px;
+    margin-left: 10%;
+    max-width:60%;
+    font-size: 1.3em;
+    background-color: rgba(255, 255, 255, 0.3);
+
+}
+
+#skipBotton {
+    margin-top: 0;
+    margin-left: 34%;
+}
+
+#text-under-intro{
+    position: relative;
+    margin: 11% auto 0 42%;
+    font-size: smaller;
+    max-width: 30%;
+    background-color: white;
+    background-opacity: .7;
+    text-align: justify;
+    color: dimgrey;
+}
+
+.quote {
+    margin: 0 0 5% 30%;
+    /*font-family: 'Roboto', sans-serif;*/
+    font-family: 'Arvo', serif;
+    font-size: 2.5em;
+    text-align: center;
+    width: 50%;
+
+}
+
+.text-after-quote{
+    margin: 0 3% 0 20%;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    line-height: 1.5em;
+}
+.text-after-quote div {
+    margin: 0 5% 10% 0;
+}
+.container-1, .container-2 {
+    max-width: 90%;
+}
+
+.graph-section-titles {
+    font-family: 'Arvo', serif;
+}
+#graph, #graph2{
+    margin-left: 40px;
+    width: 700px;
+    max-width: 800px;
+    position: -webkit-sticky;
+    position: sticky;
+    top:20%;
+    float: right;
+}
+.line {
+    fill: none;
+    stroke: #ec7d26;
+    stroke-width: 3;
+}
+
+.line2 {
+    fill: none;
+    stroke: #1e1f1e;
+    stroke-width: 3;
+}
+
+
+.tooltip-graphPassive{
+    pointer-events: none;
+    display:inline-block;
+}
+
+
+#sections, #sections2 {
+    width: 30%;
+    margin-left: 10%;
+    line-height: 1.5em;
+}
+
+
+#sections > div{
+    background: white;
+    opacity: .2;
+    margin-bottom: 200px;
+}
+#sections > div:last-child{
+    margin-bottom: 200px;
+}
+#sections > div.graph-scroll-active{
+    opacity: 1;
+}
+
+#sections2 > div{
+    background: white;
+    opacity: .2;
+    margin-bottom: 200px;
+}
+#sections2 > div:last-child{
+    margin-bottom: 25px;
+}
+#sections2 > div.graph-scroll-active{
+    opacity: 1;
+}
+
+
+#title_Section-JBogle {
+    margin: 2% 0 0 20%;
+}
+
+#title_Section-JBogle p {
+    margin: 0 0 0 0
+}
+.section-JBogle {
+    display: flex;
+    flex-direction: row;
+    margin: 0 3% 0 20%;
+    max-width: 80%;
+    text-align: justify;
+    line-height: 1.5em
+}
+
+#photo_Section-JBogle {
+    width: 100%;
+    height: 100%;
+}
+
+div.graph-scroll-active #section-JBogle {
+    margin-bottom: 0;
+}
+
+/* part on concentration hereafter */
+
+#title-concentration-graph, #title-concentration-graph2, #title-concentration-graph3, #title-concentration-graph4 {
+    margin: 9% 0 0 9%;
+    font-family: 'Arvo', serif;
+}
+.concentration-graph {
+    display: flex;
+    flex-direction: row;
+    margin-left: 9%;
+    max-width: 90%;
+    line-height: 1.5em;
+    justify-content: center;
+}
+
+.concentration-graph img {
+    margin-top: 3%;
+    margin-right: 2%;
+    height: 50%;
+    width: 50%;
+}
+
+.concentration-graph div {
+    margin-top: 4%;
+    max-width: 30%;
+    /*margin-left: 5%;*/
+}
+
+.container-title {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.under-concentration {
+    margin: 0 0 5% 9%;
+    max-width: 55%;
+    text-align: justify;
+}
+
+/*graph on environ issues*/
+.tooltipEnvironGraph rect {
+    pointer-events: none;
+    /*width: auto;*/
+}
+
+#Environ_proptexts_DIV {
+    width: 500px;
+}
+.Environ_proptexts_ACTIVE {
+    font-family: 'Roboto', sans-serif;
+    font-size: 13px;
+    color: #565656;
+    line-height: 1.4em;
+}
+
+
+.KMorgan-FLEX-div {
+    display: flex;
+    flex-direction: row;
+    margin: 3% 0 0 9%;
+    max-width: 90%;
+    line-height: 1.5em;
+}
+
+.KMorgan-FLEX-div div {
+    text-align: justify;
+    margin: 0 5% 0 0;
+}
+
+.imageKM1 #text{
+    font-size: x-small
+}
+
+
+.Exxon-FLEX-div {
+    display: flex;
+    flex-direction: row;
+    margin: 3% 0 0 9%;
+    max-width: 90%;
+    line-height: 1.5em;
+}
+.Exxon-FLEX-div div {
+    text-align: justify;
+    margin: 0 5% 0 0;
+    justify-content: flex-start;
+}
+
+#title-concentration-graph4 {
+    margin: 6% 0 0 9%;
+    font-family: 'Arvo', serif;
+}
+
+.FLEXdiv_beforeBiggraph {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 4% 9%;
+    text-align: justify;
+    max-width: 60%;
+    line-height: 1.5em;
+}
+
+#main-title {
+    /* HOW DID THE MAIN ASSET MANAGERS VOTE? */
+    font-size: 2em;
+    font-max-size: 120%;
+    font-family: 'Arvo', serif;
+    color: #000000;
+    letter-spacing: 2px;
+}
+#subtitle {
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    margin: -1px 0 30px 0;
+    color: dimgrey;
+}
+
+.container-all-graphs {
+    max-width: 1400px;
+    width: 88%;
+    margin: 0 3% 0 3%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+
+.container-graph {
+     display: flex;
+     flex-direction: column;
+     max-width: 30%;
+     align-items: center;
+    justify-content: space-around;
+ }
+.GraphFundTitle {
+    /* BR ; VANG ; STST above graphs*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.63);
+}
+.container-issues {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    margin: 24px 0 0 0;
+}
+.container-graph biggraphRight {
+    margin-right: 0;
+    width: 28%;
+}
+
+#legend_mainGraph_IMG {
+    position: absolute;
+    margin: 150px 10px 0 73%;
+    z-index: 4;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px 7px 4px 7px;
+}
+
+#legend_mainGraph {
+    width: 100%;
+    height:  100%;
+    font-size: 0.7em;
+    line-height: 1em;
+}
+
+
+.howtoread {
+    margin: 5% 5% 0 90% ;
+    position: absolute;
+    z-index:3;
+    height: 60%;
+}
+
+.container-graph h3{
+    align-self: flex-start;
+    /*margin-left: 8%;*/
+}
+
+.container-graph #propText {
+    position: absolute;
+    /*display: inline-block;*/
+    display: None;
+    background-color: rgba(255, 0, 0, 0.5);
+    min-width: 15%;
+    max-width: 60%;
+    height: 13%;
+    z-index: 4;
+    top: 40%;
+    left: 30%;
+}
+
+.container-controls {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*BUTTON TO SET CATEGORY*/
+.button:focus {
+    outline: none;
+}
+.button {
+    margin: 0 5px;
+    font-family: 'Roboto', sans-serif;
+    min-width: 50px;
+    max-width: 200px;
+    min-height: 40px;
+    max-height: 30px;
+    /*display: block;*/
+    padding: 0 .5em;
+    background: none;
+    vertical-align: middle;
+    /*position: relative;*/
+    z-index: 1;
+    letter-spacing: 1px;
+    color: #696969;
+    font-size: 14px;
+    border: 1px solid #c2c2c2;
+    cursor: pointer;
+}
+.button::after {
+    content: "";
+    background-color: transparent;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    opacity: 0;
+    color: #ec7d26;
+    z-index: -1;
+}
+.button:hover {
+    border: 2px solid #000000;
+    background-color: rgba(212, 212, 212, 0.38);
+    color: black;
+}
+
+.button a {
+    text-decoration: none;
+    color: gray;
+    stroke-width: 0.3;
+}
+
+
+
+.issue-text {
+    margin-top: 9px;
+    font-family: 'Roboto', sans-serif;
+    font-size: .9em;
+}
+
+/*SLIDER*/
+.handle {
+    fill: orange;
+    cursor: pointer;
+}
+
+.track, .track-inset, .track-overlay {
+    stroke-linecap: square;
+    cursor: initial;
+}
+
+.selectedSq {
+    height: 19px;
+    width: 19px;
+    stroke-width: 4;
+    transform: translate(-2px, -2px);
+}
+
