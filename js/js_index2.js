@@ -196,7 +196,11 @@ let mastergraph = function(yearData, graphNr) {
 
 // _updateGraph
 let updateGraph = function(yearData, graphNr) {
-
+    legend_IMG.selectAll("*")
+        .remove()
+    d3.select("#legend_mainGraph")
+        .style("text-decoration", "None");
+    legend_IMG.style("opacity", 0)
     // select companies only
     let companies = d3.map( yearData, function(d){ return d.issuer_company } ).keys();
 
@@ -593,10 +597,10 @@ const createEnviron = function() {
 
 d3.select("#environ_btn").on('click', function(d) {
 
-    if (switchEnviron === "eviron") {
+    if (switchEnviron === "environ") {
         d3.select("#environ_btn").style("text-decoration", "None")
+        switchEnviron = "master"; // switch to master
 
-        switchEnviron = "master";
         let BrDataUpdate = getYearData(dataBr, thisYear);
         updateGraph( BrDataUpdate, graph1);
 
@@ -605,11 +609,13 @@ d3.select("#environ_btn").on('click', function(d) {
 
         let StStDataUpdate = getYearData(dataStSt, thisYear);
         updateGraph(StStDataUpdate, graph3);
-    }
-        else {
 
+
+
+    }
+     else {
         d3.select("#environ_btn").html("all combined");
-        switchEnviron = "eviron";
+        switchEnviron = "environ"; // switch to environ
         return createEnviron()
     }
 
@@ -655,25 +661,62 @@ sliderYears.on("onchange", val => {
     }); // end of sliders
 
 
-
-
+// set up how to read:
 let legendSwitch= "showIMG";
 let legend_IMG = d3.select("#legend_mainGraph_IMG");
 let legend_butto = d3.select("#legend_mainGraph");
-legend_IMG.style("opacity", 0)
+legend_IMG.style("opacity", 0);
+legend_butto.on("click", function() {
 
-legend_butto.on("click", function(){
-        if (legendSwitch === "showIMG") {
-            legend_IMG.style("opacity", 1);
-            d3.select("#legend_mainGraph")
-                .style("text-decoration", "line-through");
+    if (legendSwitch === "showIMG" && switchEnviron === "master") {
+        legend_IMG.style("opacity", 1);
+        legend_IMG
+            .append("svg:image")
+            .attr("x", 10)
+            .attr("y", 10)
+            .attr('width', "100%")
+            .attr('height', "55%")
+            .attr("xlink:href", "Data/img/Legend_all_topics.svg");
+        d3.select("#legend_mainGraph")
+            .style("text-decoration", "line-through");
         legendSwitch = "removeIMG";
 
-        }
-            else {
-            legend_IMG.style("opacity", 0);
-                d3.select("#legend_mainGraph")
-                    .style("text-decoration", "None");
-                legendSwitch = "showIMG";
-            }
-        })
+    } else if (legendSwitch === "showIMG" && switchEnviron === "environ") {
+        legend_IMG.style("opacity", 1);
+        legend_IMG
+            .append("svg:image")
+            .attr("x", 10)
+            .attr("y", 10)
+            .attr('width', "100%")
+            .attr('height', "55%")
+            .attr("xlink:href", "Data/img/legendVangGraph.svg");
+        d3.select("#legend_mainGraph")
+            .style("text-decoration", "line-through");
+        legendSwitch = "removeIMG";
+
+    } else {
+        legend_IMG.style("opacity", 0);
+        legend_IMG.selectAll("*")
+            .remove()
+        d3.select("#legend_mainGraph")
+            .style("text-decoration", "None");
+        legendSwitch = "showIMG";
+    }
+});
+
+
+// legend_butto.on("click", function(){
+//         if (legendSwitch === "showIMG") {
+//             legend_IMG.style("opacity", 1);
+//             d3.select("#legend_mainGraph")
+//                 .style("text-decoration", "line-through");
+//         legendSwitch = "removeIMG";
+//
+//         }
+//             else {
+//             legend_IMG.style("opacity", 0);
+//                 d3.select("#legend_mainGraph")
+//                     .style("text-decoration", "None");
+//                 legendSwitch = "showIMG";
+//             }
+//         })

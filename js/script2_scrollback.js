@@ -544,13 +544,7 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
             .text("action within the S&P500 over the period between 2014-2018")
             .attr("fill", "#6a7272")
             .attr("font-size", ".8em");
-        // let legendTitle_graph2 =  svgTwo.append("text")
-        //     .attr('class', "waffle1")
-        //     .attr("x", width- 260)
-        //     .attr("dy", height - 100)
-        //     .text("How to read:")
-        //     .attr("fill", "#6a7272")
-        //     .attr("font-size", ".8em");
+
         let legend_graph2 = svgTwo.append("svg:image")
             .attr("class", "waffle1")
             .attr("x", 380)

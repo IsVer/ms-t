@@ -352,7 +352,11 @@ div.graph-scroll-active #section-JBogle {
 
 #legend_mainGraph_IMG {
     position: absolute;
-    margin: 150px 10px 0 73%;
+    left: 70%;
+    margin: 150px 0 auto 0;
+    float: right;
+    width: 400px;
+    height: 400px;
     z-index: 4;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 8px 7px 4px 7px;
