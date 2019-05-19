@@ -557,7 +557,7 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
             .attr("y", 76)
             .attr('width', "55%")
             .attr('height', "55%")
-            .attr("xlink:href", "Data/img/legend2_waffle_4.svg");
+            .attr("xlink:href", "Data/img/legendVangGraph.svg");
 
 
         let tooltip2 = svgTwo.append("g")
