@@ -547,10 +547,10 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
 
         let legend_graph2 = svgTwo.append("svg:image")
             .attr("class", "waffle1")
-            .attr("x", 380)
+            .attr("x", 450)
             .attr("y", 76)
-            .attr('width', "55%")
-            .attr('height', "55%")
+            .attr('width', "30%")
+            .attr('height', "35%")
             .attr("xlink:href", "Data/img/legendVangGraph.svg");
 
 

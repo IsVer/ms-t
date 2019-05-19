@@ -340,10 +340,24 @@ div.graph-scroll-active #section-JBogle {
     color: rgba(0, 0, 0, 0.63);
 }
 .container-issues {
-    align-self: flex-start;
     display: flex;
+    align-self: flex-end;
+    align-content: flex-end;
+    flex-direction: column;
+    margin: 4px 0 0 auto;
+    width: max-content;
+}
+.slider {
+    justify-self: flex-end;
+    align-self: flex-end;
+}
+
+.flex_button_environ {
+    display: flex;
+    align-self: flex-end;
+    align-content: flex-end;
     flex-direction: row;
-    margin: 24px 0 0 0;
+    margin: 4px 45px 0 0;
 }
 .container-graph biggraphRight {
     margin-right: 0;
@@ -353,10 +367,10 @@ div.graph-scroll-active #section-JBogle {
 #legend_mainGraph_IMG {
     position: absolute;
     left: 70%;
-    margin: 150px 0 auto 0;
+    margin: 100px 0 auto 0;
     float: right;
     width: 400px;
-    height: 400px;
+    height: 280px;
     z-index: 4;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 8px 7px 4px 7px;
@@ -369,19 +383,33 @@ div.graph-scroll-active #section-JBogle {
     line-height: 1em;
 }
 
-
 .howtoread {
-    margin: 5% 5% 0 90% ;
+    margin: 5% 0 0 auto ;
     position: absolute;
+    right: 5%;
     z-index:3;
-    height: 60%;
+    height: 10%;
 }
 
+.div_prop_text_main {
+    margin: 10% 5% 0 90% ;
+    position: absolute;
+    z-index:3;
+    height: 70%
+}
+
+#id_prop_text_main {
+    width: 100%;
+    height:  100%;
+    font-size: 0.7em;
+    line-height: 1em;
+}
 .container-graph h3{
     align-self: flex-start;
     /*margin-left: 8%;*/
 }
 
+/*TODO check this*/
 .container-graph #propText {
     position: absolute;
     /*display: inline-block;*/
@@ -397,10 +425,10 @@ div.graph-scroll-active #section-JBogle {
 
 .container-controls {
     display: flex;
-    flex-direction: row;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
+    //flex-direction: row;
+    margin: 0 5% 0 5% ;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 
