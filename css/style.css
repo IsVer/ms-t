@@ -367,10 +367,10 @@ div.graph-scroll-active #section-JBogle {
 #legend_mainGraph_IMG {
     position: absolute;
     left: 70%;
-    margin: 100px 0 auto 0;
+    margin: 10% 0 auto 0;
     float: right;
     width: 400px;
-    height: 280px;
+    height: 250px;
     z-index: 4;
     background-color: rgba(255, 255, 255, 0.8);
     padding: 8px 7px 4px 7px;
@@ -502,5 +502,13 @@ div.graph-scroll-active #section-JBogle {
     width: 19px;
     stroke-width: 4;
     transform: translate(-2px, -2px);
+}
+
+
+.selectedSqEnviron {
+    height: 19px;
+    width: 19px;
+    stroke-width: 4;
+    transform: translate(-1px, 1px);
 }
 

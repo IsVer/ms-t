@@ -456,7 +456,7 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
 
 
 // First waffle function
-
+    let fillNoVotes = "#c0caca";
     let getStrokeText = (company) => {
         let againstManFill;
         let proposals = [];
@@ -478,9 +478,9 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
             }
         });
         let countVotes = (countvotedAgainstM/proposals.length)*100;
-        if (countVotes=== 0) {againstManFill = "#535b5b" }
-        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#aebd96" }
-        else if ((countVotes > 5)) { againstManFill =  "#48a834" }
+        if (countVotes=== 0) {againstManFill = fillNoVotes}
+        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#949126" }
+        else if ((countVotes > 5)) { againstManFill =  "#2e5603" }
         return [againstManFill, proposals];
     }; // end of get stroke
 
@@ -548,7 +548,7 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
         let legend_graph2 = svgTwo.append("svg:image")
             .attr("class", "waffle1")
             .attr("x", 450)
-            .attr("y", 76)
+            .attr("y", 86)
             .attr('width', "30%")
             .attr('height', "35%")
             .attr("xlink:href", "Data/img/legendVangGraph.svg");
@@ -640,6 +640,7 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
     // };
 
     let getPropgraph = function(){
+
          d3.selectAll("rect").on("click", function (d){
                 let proparray = getStrokeText(d)[1];
                 proparray = proparray.map((prop)=>{
@@ -687,14 +688,14 @@ let svgTwo = d3.select('.container-2  #graph2').html('')
                 counter2 = 0;
             }
             if (i === 1) {
-                getPropTypes_detail()
+                getPropTypes_detail();
                 counter2 = 1;
             }
             if (i === 2)  {
                 waffle(waffle1_companies, waffle1_data);
                 d3.select("#Environ_proptexts_para")
                     .classed("Environ_proptexts_ACTIVE", false)
-                    .html('What was on the ballot and how did Vanguard vote? Click on the companies to check the proposals. <span style=\"font-weight: bolder; font-size:xx-large; color: #ec5900\"> →\t</span>')
+                    .html('What was on the ballot and how did Vanguard vote? <br><br> Click on the companies to check the proposals. <span style=\"font-weight: bolder; font-size:xx-large; color: #ec5900\"> →\t</span>')
 
                 counter2 = 2;
             }

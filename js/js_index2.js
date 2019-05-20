@@ -167,7 +167,7 @@ let mastergraph = function(yearData, graphNr) {
                 .moveToFront()
                 .classed('selectedSq',true);
 
-            d3.select('.proptextundergraph').html('lelijk')
+
 
         }) // end of mouseover
         .on( 'mouseout', function (d) {
@@ -322,7 +322,7 @@ let updateGraph = function(yearData, graphNr) {
 };
 
 // _updateGraph_Environ _environ function
-let updateGrap_Environ = function(yearData, graphNr) {
+let updateGrap_Environ = function( yearData, graphNr ) {
 
     legend_IMG.selectAll("*")
         .remove()
@@ -339,7 +339,7 @@ let updateGrap_Environ = function(yearData, graphNr) {
         fund = "BlackRock";
     } else if (graphNr === graph2) {
         fund = "Vanguard"
-    } else (fund = "StateStreet")
+    } else (fund = "StateStreet");
 
     // select unique companies only
     let companies = d3.map( yearData, function(d){ return d.comp} ).keys();
@@ -361,19 +361,25 @@ let updateGrap_Environ = function(yearData, graphNr) {
                     voteToDisplay = "voted <span style='font-weight: bolder; border-bottom: 3px solid darkorange;'>FOR</span> in " + datarow.year;
 
                 } else {
-                    voteToDisplay = fund + "voted against in " + datarow.year;}
+                    voteToDisplay = fund + " voted against in " + thisYear;}
                 let sentence = datarow.prop.toLowerCase();
                 let upper = sentence.charAt(0).toUpperCase() + sentence.substring(1);
                 proposals.push(upper + "  -  " + voteToDisplay);
             }
         });
         let countVotes = (countvotedAgainstM/proposals.length)*100;
-        if (countVotes=== 0) {againstManFill = "#535b5b" }
-        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#aebd96" }
-        else if ((countVotes > 5)) { againstManFill =  "#48a834" }
+        if (countVotes=== 0) {againstManFill = "#c0caca" }
+        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#949126" }
+        else if ((countVotes > 5)) { againstManFill =  "#2e5603" }
         // console.log(proposals);
         return [againstManFill, proposals];
+
+
     }; // end of get stroke
+
+
+
+
 
     let t = d3.transition()
         .duration(1000);
@@ -432,14 +438,19 @@ let updateGrap_Environ = function(yearData, graphNr) {
         });
 
 
+
     d3.selectAll("rect").on('mouseover', function(d)  {
-         console.log("sdfasdfasdfasdf")
+
+        // d3.select('.proptextundergraph').html( ()=> { return console.log( getStrokeText(d)[1] ) } )
+        d3.select('.proptextundergraph').html( ()=> { return console.log( getStrokeText(d)[1] ) } )
+
+
         let companyName = d;
         let companyClass = getCompanyClass(d);
 
         d3.selectAll('.c'+ companyClass + "__rect")
             .moveToFront()
-            .classed('selectedSq',true);
+            .classed('selectedSqEnviron',true);
 
         tooltip
             .transition()
@@ -458,7 +469,7 @@ let updateGrap_Environ = function(yearData, graphNr) {
             let companyClass = getCompanyClass(d);
 
             d3.selectAll('.c'+ companyClass + "__rect")
-                .classed('selectedSq',false);
+                .classed('selectedSqEnviron',false);
 
             tooltip
                 .html("on <span style='border-bottom:  3px solid darkorange;'> environmental</span> proxy issues")
@@ -601,7 +612,6 @@ const createEnviron = function() {
     updateGrap_Environ (BrEnviron, graph1);
     updateGrap_Environ (VangEnviron, graph2);
     updateGrap_Environ (StStEnviron, graph3);
-    console.log(environYearData[0]);
 
 
 };
@@ -684,7 +694,7 @@ legend_butto.on("click", function() {
         legend_IMG
             .append("svg:image")
             .attr("x", 10)
-            .attr("y", 10)
+            .attr("y", 35)
             .attr('width', "100%")
             .attr('height', "90%")
             .attr("xlink:href", "Data/img/Legend_all_topics.svg");
@@ -697,9 +707,9 @@ legend_butto.on("click", function() {
         legend_IMG
             .append("svg:image")
             .attr("x", 10)
-            .attr("y", 10)
-            .attr('width', "90%")
-            .attr('height', "90%")
+            .attr("y", 35)
+            .attr('width', "70%")
+            .attr('height', "70%")
             .attr("xlink:href", "Data/img/legend_environMainGraph.svg");
         d3.select("#legend_mainGraph")
             .style("text-decoration", "line-through");
