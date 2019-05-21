@@ -25,7 +25,7 @@ These text files is the data used for the visual article. Data scraping, cleanin
 - Peter Coy, 'Index Funds Are King, But Some Indexers Are Passive-Aggressive.  Instead of picking stocks to beat the market, they’re picking sectors, styles, and parts of the world', Bloomberg (January 2019) - [article link](https://www.bloomberg.com/news/articles/2019-01-24/index-funds-are-king-but-some-indexers-are-passive-aggressive)
 
 
-##### More in depth:
+##### In depth:
 - Lucian A. Bebchuk and Scott Hirst, 'Index Funds and the Future of Corporate Governance: Theory, Evidence, and Policy', *Columbia Law Review* (May 2019) - [article link](https://poseidon01.ssrn.com/delivery.php?ID=673064096005021118019023097104029100001024071012061053073118018088121007070115101091011099101107042108110073124023066099082098031034078007004004111007022111122038047037013019116005111097006119102068101004026123082013008103065100107099076097115004&EXT=pdf)
 - Bernard S. Sharfman, 'Proposed New Disclosures for Mutual Fund Advisers', *CLS Blue Sky Blog*, (October 2018) - [article link](http://clsbluesky.law.columbia.edu/2018/10/19/proposed-new-disclosures-for-mutual-fund-advisers/)
 - Adriana Robertson, 'Passive in Name Only: Delegated Management and 'Index' Investing', *Yale Journal on Regulation* (May 2019) - [article link](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3244991)
