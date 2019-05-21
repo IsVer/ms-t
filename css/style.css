@@ -357,7 +357,7 @@ div.graph-scroll-active #section-JBogle {
     align-self: flex-end;
     align-content: flex-end;
     flex-direction: row;
-    margin: 4px 45px 0 0;
+    margin:10px 45px 0 0;
 }
 .container-graph biggraphRight {
     margin-right: 0;
@@ -424,13 +424,22 @@ div.graph-scroll-active #section-JBogle {
 }
 
 .container-controls {
+    position: relative;
     display: flex;
-    //flex-direction: row;
+    flex-direction: row;
+    top: -50px;
     margin: 0 5% 0 5% ;
     align-items: flex-start;
     justify-content: flex-start;
 }
 
+.proptextundergraph {
+    font-size: .9em;
+    width: 50%;
+}
+.proptextundergraph li {
+    list-style-type: square;
+}
 
 /*BUTTON TO SET CATEGORY*/
 .button:focus {

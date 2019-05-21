@@ -94,6 +94,7 @@ let getCompanyClass = function(d) {return d.split('*').join('').split("!").join(
 
 
 let mastergraph = function(yearData, graphNr) {
+    d3.select(".proptextundergraph").html('') ;
     // select companies only
     let companies = d3.map( yearData, function(d){return d.issuer_company } ).keys();
 
@@ -199,8 +200,11 @@ let mastergraph = function(yearData, graphNr) {
 
 // _updateGraph
 let updateGraph = function(yearData, graphNr) {
+
+    d3.select(".proptextundergraph").html('') ;
+
     legend_IMG.selectAll("*")
-        .remove()
+        .remove();
     d3.select("#legend_mainGraph")
         .style("text-decoration", "None");
     legend_IMG.style("visibility", "hidden");
@@ -321,84 +325,50 @@ let updateGraph = function(yearData, graphNr) {
         .html("environmental"); // TODO fix this
 };
 
+
 // _updateGraph_Environ _environ function
-let updateGrap_Environ = function( yearData, graphNr ) {
+let updateGrap_Environ = function( yearData, graphNr) {
+
+
+    d3.select(".proptextundergraph").html('') ;
 
     legend_IMG.selectAll("*")
-        .remove()
+        .remove();
     d3.select("#legend_mainGraph")
         .style("text-decoration", "None");
     legend_IMG.style("visibility", "hidden");
 
 
-    d3.select(".tooltip").html("on <span style='border-bottom:  3px solid darkorange;'> environmental</span> proxy issues")
-
-
-    let fund;
-    if (graphNr === graph1) {
-        fund = "BlackRock";
-    } else if (graphNr === graph2) {
-        fund = "Vanguard"
-    } else (fund = "StateStreet");
+    d3.select(".tooltip").html("on <span style='border-bottom:  3px solid darkorange;'> environmental</span> proxy issues");
 
     // select unique companies only
     let companies = d3.map( yearData, function(d){ return d.comp} ).keys();
 
-
-    let getStrokeText = (company) => {
-
-        let againstManFill;
-        let proposals = [];
-        let countvotedAgainstM = 0;
-
-
-        yearData.forEach((datarow) => {
+    let getfillEnv = function( company ) {
+        let fill, fund;
+        yearData.forEach( (datarow) => {
             if (datarow.comp === company) {
-                let voted = datarow.voted;
-                let voteToDisplay;
-                if (voted === "AGAINST MGMT") {
-                    countvotedAgainstM += 1;
-                    voteToDisplay = "voted <span style='font-weight: bolder; border-bottom: 3px solid darkorange;'>FOR</span> in " + datarow.year;
-
-                } else {
-                    voteToDisplay = fund + " voted against in " + thisYear;}
-                let sentence = datarow.prop.toLowerCase();
-                let upper = sentence.charAt(0).toUpperCase() + sentence.substring(1);
-                proposals.push(upper + "  -  " + voteToDisplay);
+                fill = datarow.fill;
+                fund = datarow.fund;
             }
         });
-        let countVotes = (countvotedAgainstM/proposals.length)*100;
-        if (countVotes=== 0) {againstManFill = "#c0caca" }
-        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#949126" }
-        else if ((countVotes > 5)) { againstManFill =  "#2e5603" }
-        // console.log(proposals);
-        return [againstManFill, proposals];
-
-
-    }; // end of get stroke
-
-
-
-
+        return [fill, fund];
+    };
 
     let t = d3.transition()
         .duration(1000);
 
-    //d3.selectAll('rect').classed('selectedSq',false)
     let rects = graphNr.selectAll("rect")
-        .classed('selectedSq',false)
-        .data(companies);
-    // exit
-    rects
-        .exit()
+        .data(companies)
+
+    rects.exit()
         .remove();
 
     let numCols2 = 7;
-    let blocks = rects
+    let blocks =  rects
         .data(companies)
         .enter()
         .append("rect")
-        .attr('class','blocks')
         .attr("height", 6)
         .style("stroke", "#ec5900")
         .attr("y", function(d, i){
@@ -415,7 +385,12 @@ let updateGrap_Environ = function( yearData, graphNr ) {
         .classed(function(d){
             let companyClass = getCompanyClass(d);
             return "c" + companyClass + "__rect"
-        }, false);
+        }, false)
+        .attr("class", function(d){
+            let companyClass = getCompanyClass(d);
+            return "c" + companyClass + "__rect" })
+        .attr("data-fund", (d)=>{ return getfillEnv(d)[1] } );
+
 
 
     blocks.merge(rects)
@@ -431,18 +406,53 @@ let updateGrap_Environ = function( yearData, graphNr ) {
         .attr("width", 20)
         .attr("height", 20)
         .style("stroke", "#ec5900")
-        .style('fill', (d)=>{return getStrokeText(d)[0]})
+        .style('fill', (d)=>{ return getfillEnv(d)[0] } )
         .attr("class", function(d){
             let companyClass = getCompanyClass(d);
-            return "c" + companyClass + "__rect"
-        });
+            return "c" + companyClass + "__rect";
+        })
+        .attr("data-fund", (d)=>{ return getfillEnv(d)[1] } );
 
 
+    d3.selectAll('rect').on('mouseover', function(d)  {
 
-    d3.selectAll("rect").on('mouseover', function(d)  {
 
-        // d3.select('.proptextundergraph').html( ()=> { return console.log( getStrokeText(d)[1] ) } )
-        d3.select('.proptextundergraph').html( ()=> { return console.log( getStrokeText(d)[1] ) } )
+        let fund = this.getAttribute('data-fund');
+
+        //let yearStr = yearData[1].year.toString();
+        let yearStr = thisYear.toString();
+
+        let companyStr = d.charAt(0).toUpperCase() + d.substring(1).toLowerCase();
+
+        // get the right data for this particular graph
+        let getDataforProp = function(fundname) {
+            if (fundname === "BlackRock") { dataMouse = BrCompaniesEnvFilterBIG[yearStr]}
+            else if (fundname === "Vanguard") { dataMouse = VangCompaniesEnvFilterBIG[yearStr]}
+            else { dataMouse = StStCompaniesEnvFilterBIG[yearStr] };
+            return dataMouse;
+        };
+
+
+        // get the right
+        let getprop = function( company, year ) {
+            let dataforProp = getDataforProp(fund);
+
+            dataforProp.forEach( (datarow) => {
+
+                if ((datarow.comp.toLowerCase() === company.toLowerCase()) && ( datarow.year == year) ) {
+                    propsEnv = datarow.allProps;
+                }
+            });
+            //console.log(propsEnv);
+            return propsEnv;
+        };
+
+        let thisprop = getprop(d, thisYear);
+
+        let propSentences = thisprop.join("")
+        d3.select(".proptextundergraph").html(
+            "At <span style='font-weight: bolder; color: #ec5900'> "+ companyStr + "</span>, shareholder activists proposals: <br><br>" + propSentences
+        ) ;
 
 
         let companyName = d;
@@ -451,6 +461,7 @@ let updateGrap_Environ = function( yearData, graphNr ) {
         d3.selectAll('.c'+ companyClass + "__rect")
             .moveToFront()
             .classed('selectedSqEnviron',true);
+
 
         tooltip
             .transition()
@@ -461,12 +472,13 @@ let updateGrap_Environ = function( yearData, graphNr ) {
             .style("left", d + "px")
             .style("top", d + "px");
 
-        // console.log(companyName);
-        // d3.select("#propText").html((d)=>{})
 
     })
         .on( 'mouseout', function (d) {
+
+
             let companyClass = getCompanyClass(d);
+
 
             d3.selectAll('.c'+ companyClass + "__rect")
                 .classed('selectedSqEnviron',false);
@@ -555,56 +567,116 @@ d3.csv('Data/StStDataSP500_allyears.csv')
     });
 
 
-
 //  selection for Environmental props
+// _getdataEnviron
+let BrCompaniesEnvFilterBIG = {};
+let VangCompaniesEnvFilterBIG = {};
+let StStCompaniesEnvFilterBIG = {};
+
 let getdataEnviron = function(year) {
-    let VangDataForProp = getYearData(dataVang, year);
-    let VangCompaniesEnvFilter = [];
-    let BRDataForProp = getYearData(dataBr, year);
+
     let BrCompaniesEnvFilter = [];
-    let StStDataForProp = getYearData(dataStSt, year);
+    let VangCompaniesEnvFilter = [];
     let StStCompaniesEnvFilter = [];
 
-    VangDataForProp.forEach( ( datarow ) => {
-        let environProp = +datarow.environ_prop;
-        if ( environProp  > 0 ) {
-            let prop  = datarow.proposal;
-            let propnr = datarow.prop_nr;
-            let comp = datarow.issuer_company;
-            let voted = datarow.against_mgmt;
-            VangCompaniesEnvFilter.push( { comp:comp, propnr:propnr, prop:prop, voted:voted} )
-        }
-    });
+    let BRDataForProp = getYearData(dataBr, year);
+    let VangDataForProp = getYearData(dataVang, year);
+    let StStDataForProp = getYearData(dataStSt, year);
+
+    let fund;
+    // get fill for environ issues and proposal text based on company
+    let getStrokeText = function (company, dataEn, fund) {
+
+        let againstManFill;
+        let proposals = [];
+        let countvotedAgainstM = 0;
+
+        let dataEnSelect = dataEn.filter( lines => (lines.environ_prop  > 0 && lines.year === year  )  );
+
+        dataEnSelect.forEach((datarow) => {
+
+            if (datarow.issuer_company.toLowerCase() === company.toLowerCase()) {
+                let voted = datarow.against_mgmt;
+                let voteToDisplay;
+                if (voted === "AGAINST MGMT") {
+                    countvotedAgainstM += 1;
+                    voteToDisplay = fund + " voted  <span style='font-weight: bolder; border-bottom: 2px solid darkorange;'>FOR</span> in "  + datarow.year + "<br>";
+
+                } else {
+                    voteToDisplay =  fund  + " voted <span style='font-weight: bolder; border-bottom: 2px solid darkorange;'>against</span> in " + thisYear  ;}
+                let sentence = datarow.proposal.toLowerCase();
+                let upper = sentence.charAt(0).toUpperCase() + sentence.substring(1);
+                proposals.push( "<li>" + upper + "  --  " + voteToDisplay + "</li>");
+            }
+        });
+
+        let countVotes = (countvotedAgainstM/proposals.length)*100;
+        if (countVotes=== 0) {againstManFill = "#c0caca" }
+        else if ((countVotes > 0 ) && (countVotes < 30)) { againstManFill ="#949126" }
+        else if ((countVotes > 5)) { againstManFill =  "#2e5603" }
+
+        return [againstManFill, proposals];
+
+    }; // end of get stroke and text
+
 
     BRDataForProp.forEach( ( datarow ) => {
         let environProp = +datarow.environ_prop;
-        if ( environProp  > 0 ) {
-            let prop  = datarow.proposal;
-            let propnr = datarow.prop_nr;
+        if (( environProp  > 0) && ( +datarow.year === year)) {
+            fund = "BlackRock";
             let comp = datarow.issuer_company;
             let voted = datarow.against_mgmt;
-            BrCompaniesEnvFilter.push( { comp:comp, propnr:propnr, prop:prop, voted:voted} )
+            let propnr = datarow.prop_nr;
+            let prop = datarow.proposal;
+            let stroketext = getStrokeText(comp, BRDataForProp, fund); // will be fill [0] and prop [1]
+            let allProps = stroketext[1];
+            let fill = stroketext[0];
+            BrCompaniesEnvFilter.push( { fund: fund, comp:comp, propnr:propnr, prop:prop,  voted:voted, allProps: allProps, fill: fill, year:year} )
         }
     });
 
+
+    VangDataForProp.forEach( ( datarow ) => {
+        let environProp = +datarow.environ_prop;
+        if (( environProp  > 0) && ( +datarow.year === year)) {
+            fund = "Vanguard";
+            let comp = datarow.issuer_company;
+            let voted = datarow.against_mgmt;
+            let propnr = datarow.prop_nr;
+            let prop = datarow.proposal;
+            let stroketext = getStrokeText(comp, VangDataForProp, fund); // will be fill [0] and prop [1]
+            let allProps = stroketext[1];
+            let fill = stroketext[0];
+            VangCompaniesEnvFilter.push( { fund: fund, comp:comp, propnr:propnr, prop:prop,  voted:voted, allProps: allProps, fill: fill, year:year} )
+        }
+    });
 
     StStDataForProp.forEach( ( datarow ) => {
         let environProp = +datarow.environ_prop;
-        if ( environProp  > 0 ) {
-            let prop  = datarow.proposal;
-            let propnr = datarow.prop_nr;
+        if (( environProp  > 0) && ( +datarow.year === year)) {
+            fund = "StateStreet";
             let comp = datarow.issuer_company;
             let voted = datarow.against_mgmt;
-            StStCompaniesEnvFilter.push( { comp:comp, propnr:propnr, prop:prop, voted:voted} )
+            let propnr = datarow.prop_nr;
+            let prop = datarow.proposal;
+            let stroketext = getStrokeText(comp, StStDataForProp, fund); // will be fill [0] and prop [1]
+            let allProps = stroketext[1];
+            let fill = stroketext[0];
+            StStCompaniesEnvFilter.push( { fund: fund, comp:comp, propnr:propnr, prop:prop,  voted:voted, allProps: allProps, fill: fill, year:year} )
         }
     });
 
+    BrCompaniesEnvFilterBIG[year] = BrCompaniesEnvFilter;
+    VangCompaniesEnvFilterBIG[year] = VangCompaniesEnvFilter;
+    StStCompaniesEnvFilterBIG[year] = StStCompaniesEnvFilter;
 
-    return [BrCompaniesEnvFilter, VangCompaniesEnvFilter, StStCompaniesEnvFilter];
+    return [ BrCompaniesEnvFilter, VangCompaniesEnvFilter, StStCompaniesEnvFilter ];
+
 };
 
-const createEnviron = function() {
-    let environYearData = getdataEnviron(thisYear); // get data for each fund
+
+const createEnviron = function(year) {
+    let environYearData = getdataEnviron( year ); // get data for each fund
     let BrEnviron = environYearData[0];
     let VangEnviron = environYearData[1];
     let StStEnviron = environYearData[2];
@@ -613,12 +685,12 @@ const createEnviron = function() {
     updateGrap_Environ (VangEnviron, graph2);
     updateGrap_Environ (StStEnviron, graph3);
 
-
 };
 
 d3.select("#environ_btn").on('click', function(d) {
 
     if (switchEnviron === "environ") {
+
         d3.select("#environ_btn").style("text-decoration", "None")
         switchEnviron = "master"; // switch to master
 
@@ -637,7 +709,7 @@ d3.select("#environ_btn").on('click', function(d) {
      else {
         d3.select("#environ_btn").html("all combined");
         switchEnviron = "environ"; // switch to environ
-        return createEnviron()
+        return createEnviron(thisYear)
     }
 
 });
@@ -653,30 +725,29 @@ sliderYears.on("onchange", val => {
             updateGraph( BrDataUpdate, graph1);
 
             let VangDataUpdate = getYearData(dataVang, val);
-            updateGraph(VangDataUpdate , graph2);
+            updateGraph( VangDataUpdate , graph2);
 
             let StStDataUpdate = getYearData(dataStSt, val);
-            updateGraph(StStDataUpdate, graph3);
-            // this changes the global variable?
+            updateGraph( StStDataUpdate, graph3);
 
-            d3.select("#environ_btn").on('click', function(d) {
+            d3.select("#environ_btn").on('click', function() {
                 let environYearData = getdataEnviron(val); // get data for each fund
                 let BrEnviron = environYearData[0];
                 let VangEnviron = environYearData[1];
                 let StStEnviron = environYearData[2];
+
+                let dataMouse ;
+                let propsEnv = []; //todo a mystery why this doesn not update! 
 
                 updateGrap_Environ(BrEnviron, graph1);
                 updateGrap_Environ(VangEnviron, graph2);
                 updateGrap_Environ(StStEnviron, graph3);
 
 
-                //add title things
-                let selectsq = d3.select('.selectedSq');
-                //console.log("this is the selection: "+ selectsq);
-                //d3.select("#propText").html((d,i)=>{return BrEnviron.prop})
+
             }); // end of onclick
     } else {
-        createEnviron()
+        createEnviron(val)
     }
     thisYear = val;
     }); // end of sliders
