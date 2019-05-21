@@ -22,6 +22,8 @@ These text files is the data used for the visual article. Data scraping, cleanin
 ##### On the issue:
 - John Bogle, 'Bogle Sounds a Warning on Index Funds', *WSJ* (November 2018) - [article link](https://www.wsj.com/articles/bogle-sounds-a-warning-on-index-funds-1543504551)
 - Leslie P. Norton, 'Corporate America Had Better Take Note. Fund Managers Are the New Activist Investors', Barron's (April 2019) - [article link](https://www.barrons.com/articles/mutual-fund-managers-activist-investors-51554498763)
+- Peter Coy, 'Index Funds Are King, But Some Indexers Are Passive-Aggressive.  Instead of picking stocks to beat the market, they’re picking sectors, styles, and parts of the world', Bloomberg (January 2019) - [article link](https://www.bloomberg.com/news/articles/2019-01-24/index-funds-are-king-but-some-indexers-are-passive-aggressive)
+
 
 ##### More in depth:
 - Lucian A. Bebchuk and Scott Hirst, 'Index Funds and the Future of Corporate Governance: Theory, Evidence, and Policy', *Columbia Law Review* (May 2019) - [article link](https://poseidon01.ssrn.com/delivery.php?ID=673064096005021118019023097104029100001024071012061053073118018088121007070115101091011099101107042108110073124023066099082098031034078007004004111007022111122038047037013019116005111097006119102068101004026123082013008103065100107099076097115004&EXT=pdf)
