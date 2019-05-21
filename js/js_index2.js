@@ -737,7 +737,7 @@ sliderYears.on("onchange", val => {
                 let StStEnviron = environYearData[2];
 
                 let dataMouse ;
-                let propsEnv = []; //todo a mystery why this doesn not update! 
+                let propsEnv = []; //todo a mystery why this doesn not update!
 
                 updateGrap_Environ(BrEnviron, graph1);
                 updateGrap_Environ(VangEnviron, graph2);
