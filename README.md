@@ -5,7 +5,7 @@ The increase in passively invested money, index funds, is affecting the relation
 <br>
 <br>
 This article is a first look at this question using voting records - [Form N-PX](https://www.sec.gov/reportspubs/investor-publications/investorpubsmfproxyvotinghtm.html) filings - of the three largest index fund providers. 
-See [an example of a Form N-PX](https://www.sec.gov/Archives/edgar/data/36405/000093247118006954/indexfunds0835.html] for Vanguard's index funds.
+See [an example of a Form N-PX]( https://www.sec.gov/Archives/edgar/data/36405/000093247118006954/indexfunds0835.html] for Vanguard's index funds.
 
 ![image](Data/img/screensh.png)
 [Project link](https://isver.github.io/ms-t/)
