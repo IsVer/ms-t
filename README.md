@@ -14,7 +14,7 @@ As index-based investment providers grew in size, this question became more prom
 <br><br> 
 These asset managers need to disclose how they voted on their securities with the Securities and Exchange Commission (SEC). The SEC has a [search function](https://www.sec.gov/edgar/searchedgar/mutualsearch.html) allowing investors to look at voting records for each mutual fund and other investment companies. The interesting filing here is Form N-PX. See [an example of a Form N-PX]( https://www.sec.gov/Archives/edgar/data/36405/000093247118006954/indexfunds0835.html) for Vanguard's index funds.
 These text files is the data used for the visual article. Data scraping, cleaning and analysis was done with regex and pandas in python. Each vote is represented in a standardized format, like the example for Alphabet below. <br><br>
-![image](Data/img/screensh2.png =250x250)
+![image](Data/img/screensh2.png){:height="50%" width="50%"}
 
 
 #### Read more
