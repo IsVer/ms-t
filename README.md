@@ -18,8 +18,10 @@ These text files is the data used for the visual article. Data scraping, cleanin
 
 
 #### Read more
+On the issue in this [background paper](https://github.com/IsVer/ms-t/blob/master/Background_paper.pdf)
 
-##### On the issue:
+
+##### Other articles:
 - John Bogle, 'Bogle Sounds a Warning on Index Funds', *WSJ* (November 2018) - [article link](https://www.wsj.com/articles/bogle-sounds-a-warning-on-index-funds-1543504551)
 - Leslie P. Norton, 'Corporate America Had Better Take Note. Fund Managers Are the New Activist Investors', Barron's (April 2019) - [article link](https://www.barrons.com/articles/mutual-fund-managers-activist-investors-51554498763)
 - Peter Coy, 'Index Funds Are King, But Some Indexers Are Passive-Aggressive.  Instead of picking stocks to beat the market, they’re picking sectors, styles, and parts of the world', Bloomberg (January 2019) - [article link](https://www.bloomberg.com/news/articles/2019-01-24/index-funds-are-king-but-some-indexers-are-passive-aggressive)
