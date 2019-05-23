@@ -753,7 +753,7 @@ sliderYears.on("onchange", val => {
     }); // end of sliders
 
 
-// set up how to read:
+// set up _howtoread:
 let legendSwitch= "showIMG";
 let legend_IMG = d3.select("#legend_mainGraph_IMG");
 let legend_butto = d3.select("#legend_mainGraph");
